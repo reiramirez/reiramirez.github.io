@@ -1,0 +1,131 @@
+@import "./tokens.css";
+@import "./gate.css";
+@import "./peace.css";
+@import "./passion.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #12151c;
+  scroll-behavior: smooth;
+  transition: background-color 0.35s ease;
+}
+
+body {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.5;
+  transition:
+    background-color 0.35s ease,
+    background-image 0.35s ease,
+    color 0.35s ease;
+}
+
+.link-icon {
+  display: inline-block;
+  margin-left: 0.28em;
+  vertical-align: -0.08em;
+  opacity: 0.65;
+  line-height: 0;
+}
+
+.link-icon svg {
+  display: block;
+}
+
+/* —— No-JS / SEO: Peace only (no html.js class) —— */
+html:not(.js) .view-gate,
+html:not(.js) .view-passion {
+  display: none !important;
+}
+
+html:not(.js) .view-peace {
+  display: block !important;
+}
+
+html:not(.js) #view-peace[hidden] {
+  display: block !important;
+}
+
+html:not(.js) body {
+  color: #1a1d24;
+  background: var(--paper-peace);
+}
+
+/* Destination canvases — swapped at fade start so underlay matches the target */
+body.theme-peace {
+  color: #1a1d24;
+  background: var(--paper-peace);
+}
+
+body.theme-gate {
+  color: var(--paper);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196, 163, 90, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(94, 196, 224, 0.06), transparent 50%),
+    linear-gradient(175deg, #1a1e26 0%, #12151c 100%);
+}
+
+body.theme-passion {
+  color: var(--paper);
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 0%, var(--passion-gold-soft), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 10% 90%, var(--passion-cyan-soft), transparent 50%),
+    linear-gradient(160deg, var(--chassis) 0%, var(--panel) 55%, #0e1218 100%);
+}
+
+html.theme-peace {
+  background-color: #f4f1ea;
+}
+
+html.theme-gate,
+html.theme-passion {
+  background-color: #12151c;
+}
+
+/* —— JS views —— */
+html.js .view {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+html.js .view.is-active {
+  display: block;
+  opacity: 1;
+}
+
+html.js .view-gate.is-active {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+}
+
+html.js.is-leaving .view.is-active {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    transition: none;
+  }
+
+  html.js .view {
+    transition: none;
+  }
+
+  html.js.is-leaving .view.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

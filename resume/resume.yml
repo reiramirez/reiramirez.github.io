@@ -1,0 +1,231 @@
+# yaml-language-server: $schema=https://yamlresume.dev/schema.json
+---
+content:
+  basics:
+    name: Jeff Ramirez
+    headline: Software architect, AI-native polyglot engineer
+    email: ffejzerimar@gmail.com
+    phone: "+63 976 274 0741"
+    url: https://reiramirez.github.io
+    summary: |
+      Software architect and engineer leveraging AI to build clear systems, durable interfaces, 
+      and practical CI/CD from the ground up, on any language and stack.
+
+      - Worked on a wide range of projects, from enterprise-grade ecosystems to small, modular libraries
+      - Experienced in a wide range of languages and frameworks, from Java to C# to JavaScript to Python
+      - Strong understanding of software architecture and design patterns
+      - Experienced in leading teams and owning projects from start to finish
+      - Self-taught and always willing to learn new things
+      - Passionate about building practical, useful software with a positive impact
+  projects:
+    - name: Mirepoix
+      url: https://github.com/mirepoix-libs
+      startDate: Sep 14, 2026
+      description: A collection of building blocks for various projects and programming languages
+      summary: |
+        - small, self-contained packages I use as the basis for my own projects, hence the name
+        - MIT licensed, free and open-source, forever
+        - C# packages published on NuGet
+        - Java packages to be published on Maven Central
+        - More languages and packages added as I work on new projects
+      keywords:
+        - C#
+        - ASP.NET
+        - Entity Framework
+        - Dapper
+        - SQL Server
+        - NuGet
+        - Java
+        - Maven
+    - name: Projectr
+      url: https://projectr.app
+      startDate: Mar 26, 2026
+      description: A project management and system architecture tool for small teams with big ideas
+      summary: |
+        - Started as a side project to help myself and my friends manage our personal projects
+        - First foray into AI-assisted software development
+        - Working prototype still in development
+        - Alpha testing phase planned for Q2 2027
+      keywords:
+        - Tanstack
+        - React
+        - NestJS
+        - PostgreSQL
+    - name: fuller-stack
+      url: https://reiramirez.github.io/fuller-stack
+      startDate: May 18, 2026
+      description: A browser-based incremental idle game about the struggles of a full stack developer in a one-man team
+      summary: |
+        - Passion project with a self-imposed challenge to build a full game on HTML5, Javascript, and CSS alone
+        - Currently in alpha testing phase
+        - v1.0 planned for Q4 2026
+      keywords:
+        - HTML5
+        - Tailwind
+        - JavaScript
+        - Vite
+  work:
+    - name: KOJ Services Philippines Inc.
+      position: Web Development Coordinator
+      startDate: Nov 1, 2022
+      endDate: Sep 4, 2026
+      summary: |
+        - Worked on internal web-based self-service and ERP applications as well as various APIs
+        - Led adoption of SonarQube for static analysis and JIRA for project organization
+        - Started CI/CD implementation for all team projects
+        - Spearheaded ERP ecosystem transition into microservices
+        - Created an IT management system for change requests and incident tickets
+      keywords:
+        - ASP.NET
+        - Angular
+        - React Router
+        - Tailwind
+        - SqlServer
+        - IIS
+        - Azure DevOps
+        - SonarQube
+        - microservices
+    - name: Accenture
+      position: Application Development Senior Analyst
+      startDate: Jun 1, 2021
+      endDate: Nov 1, 2022
+      summary: |
+        - Mid-level Java developer on the Spring Boot ecosystem, working for Accenture clients in the FinTech sector
+        - Gained experience in API design and the Spring microservice lifecycle
+      keywords:
+        - Java
+        - Spring Boot
+        - Hibernate
+        - JIRA
+        - SonarQube
+        - TDD
+        - Agile
+        - SAFe
+        - microservices
+    - name: Futureworks
+      position: Senior Software Engineer
+      startDate: Oct 1, 2017
+      endDate: Apr 1, 2019
+      summary: |
+        - Maintained and improved a smartphone-based photo booth software suite across web, PC, Android, and iOS
+        - Delegated day-to-day tasks and ran team scrums in an agile environment
+        - Handled client interfacing, troubleshooting, and on-site support as required
+      keywords:
+        - C#
+        - WPF
+        - Blazor/Razor Pages
+        - Keylok
+        - Android
+        - iOS
+        - Java
+        - Swift
+  education:
+    - institution: Centro Escolar University-Manila (CEU Manila)
+      degree: Bachelor
+      area: Computer Science
+      startDate: Jun 1, 2012
+      endDate: Apr 1, 2016
+      summary: |
+        - Represented the university in programming competitions
+        - Outstanding Practicum Graduate awardee
+        - Presented undergraduate thesis at other universities as school representative
+  languages:
+    - language: English
+      fluency: Native or Bilingual Proficiency
+    - language: Filipino
+      fluency: Native or Bilingual Proficiency
+    - language: Japanese
+      fluency: Limited Working Proficiency
+    - language: French
+      fluency: Limited Working Proficiency
+  skills:
+    - name: Languages
+      level: Expert
+      keywords:
+        - Python
+        - Java
+        - C#
+        - JavaScript
+        - TypeScript
+        - HTML/CSS
+        - Swift
+        - Kotlin
+        - Go
+    - name: Frontend
+      level: Expert
+      keywords:
+        - React
+        - Remix/React Router
+        - Tanstack
+        - Next.js
+        - Gatsby
+        - Angular
+        - PWAs
+    - name: Backend
+      level: Expert
+      keywords:
+        - NestJS
+        - Spring Boot
+        - Hibernate
+        - JPA
+        - ASP.NET
+        - Entity Framework
+    - name: APIs
+      level: Expert
+      keywords:
+        - REST
+        - GraphQL
+        - tRPC
+        - gRPC
+        - WebSockets
+        - JSON API
+        - OpenAPI
+        - Swagger
+    - name: Architecture
+      level: Expert
+      keywords:
+        - Microservices
+        - Event-driven
+        - Pipe-filter
+        - Client-server
+    - name: DevOps
+      level: Advanced
+      keywords:
+        - Azure
+        - GCP
+        - Github
+        - Gitea
+        - Gitlab
+        - CI/CD
+        - IaC
+    - name: Practices
+      level: Advanced
+      keywords:
+        - TDD
+        - DDD
+        - CQRS
+        - Agile
+        - SAFe
+    - name: Data
+      level: Expert
+      keywords:
+        - SQL
+        - MongoDB
+        - Cassandra
+        - Redis
+        - Elasticsearch
+        - Kafka
+        - RabbitMQ
+layouts:
+  - engine: latex
+    template: moderncv-casual
+    sections:
+      aliases:
+        work: Work Experience
+      order:
+        - basics
+        - work
+        - projects
+        - skills
+locale:
+  language: en

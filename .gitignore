@@ -1,0 +1,8 @@
+﻿node_modules
+dist
+.DS_Store
+.worktrees/
+design-explorations
+src/data/site-content.json
+resume/*
+!resume/resume.yml

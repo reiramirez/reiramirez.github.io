@@ -1,0 +1,147 @@
+/* Peace panel — scoped to .view-peace */
+
+.view-peace {
+  --bg: var(--paper-peace);
+  --ink: #1a1d24;
+  --mute: #5c636e;
+  --gold: var(--peace-gold);
+  --line: rgba(26, 29, 36, 0.14);
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.view-peace .page {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.view-peace nav {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+  font-size: 0.9rem;
+}
+
+.view-peace nav a {
+  color: var(--mute);
+  text-decoration: none;
+}
+
+.view-peace nav a:hover {
+  color: var(--ink);
+}
+
+.view-peace nav a.resume {
+  color: var(--gold);
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.view-peace h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.view-peace h1 span {
+  color: var(--gold);
+}
+
+.view-peace .bio {
+  color: var(--mute);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+.view-peace h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.view-peace .work + h2 {
+  margin-top: 2.5rem;
+}
+
+.view-peace .work {
+  list-style: none;
+}
+
+.view-peace .work li {
+  margin-bottom: 1.25rem;
+}
+
+.view-peace .work li:last-child {
+  margin-bottom: 0;
+}
+
+.view-peace .work .name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.view-peace .work a.name {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.15em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.view-peace .work a.name:hover,
+.view-peace .work a.name:focus-visible {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.view-peace .work a.name:hover .link-icon,
+.view-peace .work a.name:focus-visible .link-icon {
+  opacity: 1;
+}
+
+.view-peace .work .year::before {
+  content: " · ";
+  color: var(--mute);
+  font-weight: 400;
+}
+
+.view-peace .work .year {
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.view-peace .work .note {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--mute);
+  font-size: 0.95rem;
+}
+
+.view-peace .switch {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--mute);
+}
+
+.view-peace .switch a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-peace .switch a:hover {
+  text-decoration: underline;
+}

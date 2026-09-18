@@ -1,0 +1,555 @@
+﻿/* Passion panel — scoped to .view-passion */
+.view-passion {
+  --gold: var(--passion-gold);
+  --gold-dim: var(--passion-gold-dim);
+  --gold-soft: var(--passion-gold-soft);
+  --arc: var(--passion-cyan);
+  --arc-soft: var(--passion-cyan-soft);
+  --mute: #8b93a3;
+  --line: rgba(232, 234, 239, 0.1);
+  position: relative;
+  color: var(--paper);
+  min-height: 100vh;
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 0%, var(--gold-soft), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 10% 90%, var(--arc-soft), transparent 50%),
+    linear-gradient(160deg, var(--chassis) 0%, var(--panel) 55%, #0e1218 100%);
+}
+
+.view-passion .focus-glow-clip {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.view-passion .focus-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(196, 163, 90, 0.14) 0%,
+    rgba(94, 196, 224, 0.05) 42%,
+    transparent 70%
+  );
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+
+.view-passion .focus-glow.is-on { opacity: 1; }
+
+.view-passion .hud-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);
+  opacity: 0.28;
+}
+
+.view-passion .wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 4.5rem;
+}
+
+.view-passion header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1.5rem;
+}
+
+.view-passion .mode {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.view-passion .mode span {
+  color: var(--mute);
+  font-weight: 400;
+}
+
+.view-passion header nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--mute);
+  text-decoration: none;
+  margin-left: 1.15rem;
+}
+
+.view-passion header nav a:hover { color: var(--gold); }
+.view-passion header nav a.back { color: var(--paper); }
+
+.view-passion .status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--mute);
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+
+.view-passion .status-bar .accent { color: var(--gold); }
+
+.view-passion .hero {
+  display: grid;
+  gap: 1.5rem;
+  min-height: calc(100vh - 10rem);
+  align-content: center;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 800px) {
+  .view-passion .hero {
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+.view-passion .eyebrow {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gold-dim);
+  margin-bottom: 0.85rem;
+}
+
+.view-passion .brand {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.view-passion .brand em {
+  font-style: normal;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.view-passion .lede {
+  margin-top: 1.25rem;
+  max-width: 28rem;
+  color: var(--mute);
+  font-size: 1.05rem;
+}
+
+.view-passion .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.view-passion .btn {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.85rem 1.25rem;
+  background: var(--gold);
+  color: var(--chassis);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.view-passion .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(196, 163, 90, 0.35);
+}
+
+.view-passion .link-hud {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--arc);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(94, 196, 224, 0.35);
+}
+
+.view-passion .link-hud:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.view-passion .schematic {
+  position: relative;
+  min-height: 280px;
+  height: min(48vh, 400px);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(196, 163, 90, 0.06), transparent 40%),
+    rgba(22, 26, 34, 0.9);
+  overflow: hidden;
+  transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.45s ease;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+}
+
+.view-passion .schematic::before,
+.view-passion .schematic::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--gold);
+}
+
+.view-passion .schematic::before {
+  top: 8px; left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.view-passion .schematic::after {
+  right: 8px; bottom: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+.view-passion .scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--arc), var(--gold), transparent);
+  opacity: 0.55;
+  animation: passion-scan 5.5s ease-in-out infinite;
+}
+
+.view-passion .schematic-meta {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+
+.view-passion .schematic-meta strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.view-passion .orbit {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 160px; height: 160px;
+  margin: -80px 0 0 -80px;
+  border: 1px solid rgba(94, 196, 224, 0.25);
+  border-radius: 50%;
+  animation: passion-spin 24s linear infinite;
+}
+
+.view-passion .orbit-2 {
+  width: 220px; height: 220px;
+  margin: -110px 0 0 -110px;
+  border-color: rgba(196, 163, 90, 0.2);
+  animation-duration: 36s;
+  animation-direction: reverse;
+}
+
+.view-passion .core {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  margin: -7px 0 0 -7px;
+  background: var(--gold);
+  box-shadow: 0 0 20px rgba(196, 163, 90, 0.55);
+  animation: passion-pulse 3s ease-in-out infinite;
+}
+
+.view-passion .projects-section,
+.view-passion .work-section {
+  position: relative;
+  padding: 3rem 0 1rem 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.view-passion .projects-section {
+  padding-left: 0;
+  padding-bottom: 1.25rem;
+}
+
+.view-passion .work-section {
+  margin-top: 2.5rem;
+}
+
+.view-passion .scan-rail {
+  position: absolute;
+  left: 0.35rem;
+  top: 4rem;
+  bottom: 1rem;
+  width: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.view-passion .scan-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform 0.7s ease;
+  background: linear-gradient(to bottom, var(--gold), var(--arc));
+  box-shadow: 0 0 10px rgba(94, 196, 224, 0.35);
+}
+
+.view-passion .projects-section h2,
+.view-passion .work-section h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 0 0 1.5rem -1.75rem;
+  padding-left: 1.75rem;
+}
+
+.view-passion .projects-section h2 {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.view-passion .projects { list-style: none; }
+
+.view-passion .projects:not(.project-grid) li {
+  position: relative;
+  padding: 1.35rem 0 1.35rem 0.5rem;
+  transition: background 0.25s;
+}
+
+.view-passion .projects:not(.project-grid) li::before {
+  content: "";
+  position: absolute;
+  left: -1.55rem;
+  top: 1.7rem;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--gold);
+  background: var(--chassis);
+  box-sizing: border-box;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.view-passion .projects:not(.project-grid) li.scanned::before {
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(196, 163, 90, 0.45);
+}
+
+.view-passion .projects:not(.project-grid) li.hot {
+  background: rgba(196, 163, 90, 0.04);
+}
+
+.view-passion .projects:not(.project-grid) li.hot::before {
+  border-color: var(--arc);
+  box-shadow: 0 0 12px rgba(94, 196, 224, 0.45);
+}
+
+.view-passion .projects:not(.project-grid) .card {
+  display: block;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.view-passion .projects:not(.project-grid) li.hot .card {
+  transform: translateX(6px);
+}
+
+.view-passion .project-grid {
+  --card-collapsed: 12rem;
+  --card-slot: 16rem;
+  --card-motion: 0.3s;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 560px) {
+  .view-passion .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 820px) {
+  .view-passion .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.view-passion .project-grid li {
+  min-width: 0;
+}
+
+.view-passion .project-grid .card-slot {
+  /* Room for expanded card; growth stays inside so Work experience doesn't move */
+  min-height: var(--card-slot);
+}
+
+.view-passion .project-grid .card {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--card-collapsed);
+  padding: 1.15rem 1.2rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(22, 26, 34, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition:
+    border-color var(--card-motion) ease,
+    box-shadow var(--card-motion) ease,
+    transform var(--card-motion) ease,
+    background var(--card-motion) ease;
+}
+
+.view-passion .project-grid a.card:focus-visible {
+  outline: 2px solid var(--arc);
+  outline-offset: 2px;
+}
+
+.view-passion .project-grid li.scanned .card {
+  border-color: rgba(196, 163, 90, 0.35);
+}
+
+.view-passion .project-grid li.hot .card {
+  border-color: var(--arc);
+  background: rgba(22, 26, 34, 0.98);
+  box-shadow: 0 0 0 1px rgba(94, 196, 224, 0.15), 0 12px 28px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+}
+
+.view-passion .project-grid .row {
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  flex-shrink: 0;
+}
+
+.view-passion .project-grid .title {
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+}
+
+.view-passion .project-grid .title .link-icon {
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+.view-passion .project-grid li.hot .title .link-icon {
+  color: var(--arc);
+  opacity: 1;
+}
+
+.view-passion .project-grid .blurb {
+  max-width: none;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.view-passion .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.view-passion .title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.view-passion .year {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.view-passion .blurb {
+  margin-top: 0.35rem;
+  max-width: 34rem;
+  color: var(--mute);
+  font-size: 0.95rem;
+}
+
+.view-passion .detail {
+  font-size: 0.85rem;
+  color: var(--arc);
+  margin-top: 0.45rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity var(--card-motion, 0.3s) ease,
+    max-height var(--card-motion, 0.3s) ease;
+}
+
+.view-passion .projects li.hot .detail {
+  opacity: 1;
+  max-height: 3rem;
+}
+
+.view-passion .project-grid .detail {
+  transition:
+    opacity var(--card-motion) ease,
+    max-height var(--card-motion) ease;
+}
+
+.view-passion .project-grid li.hot .detail {
+  max-height: 5rem;
+}
+
+.view-passion footer {
+  margin: 3rem 0 0 1.75rem;
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+
+@keyframes passion-scan {
+  0%, 100% { top: 12%; opacity: 0.25; }
+  50% { top: 78%; opacity: 0.7; }
+}
+
+@keyframes passion-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes passion-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-passion .scanline,
+  .view-passion .orbit,
+  .view-passion .orbit-2,
+  .view-passion .core {
+    animation: none;
+  }
+
+  .view-passion .focus-glow { display: none; }
+  .view-passion .schematic { transition: none; }
+}

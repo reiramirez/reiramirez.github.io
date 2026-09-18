@@ -1,0 +1,29 @@
+:root {
+  --chassis: #0e1014;
+  --panel: #161a22;
+  --paper: #e8eaef;
+  --paper-peace: #f4f1ea;
+  --mute: #8b93a3;
+  --line: rgba(232, 234, 239, 0.1);
+
+  /* Peace — muted gold */
+  --peace-gold: #8a7340;
+  --peace-gold-dim: #6b5a32;
+  --peace-gold-soft: rgba(138, 115, 64, 0.14);
+
+  /* Passion — brighter gold + arc cyan */
+  --passion-gold: #c4a35a;
+  --passion-gold-dim: #a88844;
+  --passion-gold-soft: rgba(196, 163, 90, 0.14);
+  --passion-cyan: #5ec4e0;
+  --passion-cyan-soft: rgba(94, 196, 224, 0.12);
+
+  /* Gate defaults (shared chassis) */
+  --gold: var(--passion-gold);
+  --gold-dim: var(--peace-gold);
+  --gold-soft: var(--passion-gold-soft);
+
+  --font-display: "Syne", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}

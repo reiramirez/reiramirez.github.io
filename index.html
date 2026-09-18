@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jeff Ramirez — Portfolio</title>
+  <meta name="description" content="Software architect and DevOps engineer building clear systems, durable interfaces, and practical CI/CD from the ground up." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/app.css" />
+  <script>
+    // Enable JS mode before paint so Peace is not flashed, then Gate boots from app.js
+    document.documentElement.classList.add('js')
+  </script>
+</head>
+<body class="theme-gate">
+  <!-- Peace is the default document for no-JS and SEO (hidden when html.js is set) -->
+  <section id="view-peace" class="view view-peace" data-view-panel="peace" hidden>
+    <div class="page">
+      <nav>
+        <a href="#gate" data-nav="gate">Gate</a>
+        <a href="#passion" data-nav="passion">Passion</a>
+        <a class="resume" data-resume href="resume.pdf">Resume PDF</a>
+      </nav>
+
+      <h1 data-peace-name>Jeff Ramirez</h1>
+      <p class="bio" data-peace-bio>
+        Software architect and DevOps engineer building clear systems, durable interfaces, and practical CI/CD from the ground up.
+      </p>
+
+      <h2>Projects</h2>
+      <ul class="work" data-peace-projects>
+        <li>
+          <a class="name" href="https://github.com/mirepoix-libs" target="_blank" rel="noopener noreferrer">Mirepoix</a>
+          <span class="year">2026</span>
+          <span class="note">A collection of building blocks for various projects and programming languages</span>
+        </li>
+        <li>
+          <a class="name" href="https://projectr.app" target="_blank" rel="noopener noreferrer">Projectr</a>
+          <span class="year">2026</span>
+          <span class="note">A project management and system architecture tool for small teams with big ideas</span>
+        </li>
+        <li>
+          <a class="name" href="https://reiramirez.github.io/fuller-stack" target="_blank" rel="noopener noreferrer">fuller-stack</a>
+          <span class="year">2026</span>
+          <span class="note">A browser-based incremental idle game about the struggles of a full stack developer in a one-man team</span>
+        </li>
+      </ul>
+
+      <h2>Work experience</h2>
+      <ul class="work" data-peace-experience>
+        <li>
+          <span class="name">Web Development Coordinator · KOJ Services Philippines Inc.</span>
+          <span class="year">2022</span>
+          <span class="note">Worked on internal web-based self-service and ERP applications as well as various APIs</span>
+        </li>
+        <li>
+          <span class="name">Application Development Senior Analyst · Accenture</span>
+          <span class="year">2021</span>
+          <span class="note">Mid-level Java developer on Spring Boot for Accenture clients</span>
+        </li>
+        <li>
+          <span class="name">Senior Software Engineer · Futureworks</span>
+          <span class="year">2017</span>
+          <span class="note">Maintained and improved a photo booth software suite across web, PC, Android, and iOS</span>
+        </li>
+      </ul>
+
+      <p class="switch">
+        Prefer the craft view?
+        <a href="#passion" data-nav="passion">Open Passion</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="view-gate" class="view view-gate is-active" data-view-panel="gate">
+    <main class="shell">
+      <p class="name" data-gate-name>Jeff Ramirez</p>
+      <h1 class="question">What do you want to see?</h1>
+      <div class="answers" role="group" aria-label="Choose a view">
+        <a class="answer answer-peace" href="#peace" data-nav="peace">
+          <span class="label">Peace</span>
+          <span class="hint">Who I am</span>
+        </a>
+        <a class="answer answer-passion" href="#passion" data-nav="passion">
+          <span class="label">Passion</span>
+          <span class="hint">What I do</span>
+        </a>
+      </div>
+    </main>
+  </section>
+
+  <section id="view-passion" class="view view-passion" data-view-panel="passion" hidden>
+    <div class="hud-grid" aria-hidden="true"></div>
+    <div class="wrap">
+      <header>
+        <p class="mode">Passion <span>· craft view</span></p>
+        <nav>
+          <a class="back" href="#gate" data-nav="gate">Gate</a>
+          <a href="#projects">Projects</a>
+          <a class="resume" data-resume href="resume.pdf">Resume (PDF)</a>
+          <a href="#peace" data-nav="peace">Peace</a>
+        </nav>
+      </header>
+
+      <div class="status-bar">
+        <span class="accent">Built with care</span>
+        <span>Same facts as Peace</span>
+        <span>More presence</span>
+      </div>
+
+      <div class="hero">
+        <div>
+          <p class="eyebrow" data-passion-eyebrow>What I do</p>
+          <h1 class="brand" data-passion-name>Jeff Ramirez</h1>
+          <p class="lede" data-passion-lede></p>
+          <div class="cta-row">
+            <a class="btn" data-resume href="resume.pdf">Resume (PDF)</a>
+            <a class="link-hud" href="#projects">See projects →</a>
+          </div>
+        </div>
+        <div class="schematic" aria-hidden="true">
+          <div class="scanline"></div>
+          <div class="orbit"></div>
+          <div class="orbit orbit-2"></div>
+          <div class="core"></div>
+          <p class="schematic-meta"><strong>Focus</strong> · how I like to work</p>
+        </div>
+      </div>
+
+      <section class="projects-section" id="projects">
+        <h2>Projects</h2>
+        <ul class="projects project-grid" data-passion-projects></ul>
+      </section>
+
+      <section class="work-section" id="experience">
+        <div class="scan-rail" aria-hidden="true"><div class="scan-fill"></div></div>
+        <h2>Work experience</h2>
+        <ul class="projects" data-passion-experience></ul>
+      </section>
+
+      <footer>Professional craft view · glow, progress, hover detail</footer>
+    </div>
+  </section>
+
+  <script type="module" src="/src/js/app.js"></script>
+</body>
+</html>

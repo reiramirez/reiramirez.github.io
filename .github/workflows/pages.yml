@@ -1,0 +1,67 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      - name: Build resume PDF
+        id: resume
+        uses: yamlresume/action@v0.16.0
+        with:
+          resumes: resume/resume.yml
+
+      - name: Place PDF in site output
+        run: |
+          PDF=""
+          if [ -f resume/resume.pdf ]; then
+            PDF=resume/resume.pdf
+          elif [ -n "${{ steps.resume.outputs.pdf-files }}" ]; then
+            PDF=$(printf '%s\n' "${{ steps.resume.outputs.pdf-files }}" | head -n 1)
+          else
+            PDF=$(find . -name 'resume.pdf' -not -path './dist/*' | head -n 1)
+          fi
+          if [ -z "$PDF" ] || [ ! -f "$PDF" ]; then
+            echo "::error::resume.pdf not found after yamlresume build"
+            exit 1
+          fi
+          echo "Using PDF: $PDF"
+          cp "$PDF" dist/resume.pdf
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
