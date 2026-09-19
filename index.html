@@ -77,7 +77,7 @@
   <section id="view-gate" class="view view-gate is-active" data-view-panel="gate">
     <main class="shell">
       <p class="name" data-gate-name>Jeff Ramirez</p>
-      <h1 class="question">What do you want to see?</h1>
+      <h1 class="question">What are you looking for?</h1>
       <div class="answers" role="group" aria-label="Choose a view">
         <a class="answer answer-peace" href="#peace" data-nav="peace">
           <span class="label">Peace</span>
@@ -94,38 +94,35 @@
   <section id="view-passion" class="view view-passion" data-view-panel="passion" hidden>
     <div class="hud-grid" aria-hidden="true"></div>
     <div class="wrap">
-      <header>
-        <p class="mode">Passion <span>· craft view</span></p>
-        <nav>
-          <a class="back" href="#gate" data-nav="gate">Gate</a>
-          <a href="#projects">Projects</a>
-          <a class="resume" data-resume href="resume.pdf">Resume (PDF)</a>
-          <a href="#peace" data-nav="peace">Peace</a>
-        </nav>
-      </header>
+      <div class="stage">
+        <header>
+          <p class="mode">Passion <span>· craft view</span></p>
+          <nav>
+            <a class="back" href="#gate" data-nav="gate">Gate</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a class="resume" data-resume href="resume.pdf">Resume (PDF)</a>
+            <a href="#peace" data-nav="peace">Peace</a>
+          </nav>
+        </header>
 
-      <div class="status-bar">
-        <span class="accent">Built with care</span>
-        <span>Same facts as Peace</span>
-        <span>More presence</span>
-      </div>
-
-      <div class="hero">
-        <div>
-          <p class="eyebrow" data-passion-eyebrow>What I do</p>
-          <h1 class="brand" data-passion-name>Jeff Ramirez</h1>
-          <p class="lede" data-passion-lede></p>
-          <div class="cta-row">
-            <a class="btn" data-resume href="resume.pdf">Resume (PDF)</a>
-            <a class="link-hud" href="#projects">See projects →</a>
+        <div class="hero">
+          <div>
+            <p class="eyebrow" data-passion-eyebrow>What I do</p>
+            <h1 class="brand" data-passion-name>Jeff Ramirez</h1>
+            <p class="lede" data-passion-lede></p>
+            <div class="cta-row">
+              <a class="btn" data-resume href="resume.pdf">Resume (PDF)</a>
+              <a class="link-hud" href="#projects">See projects →</a>
+            </div>
           </div>
-        </div>
-        <div class="schematic" aria-hidden="true">
-          <div class="scanline"></div>
-          <div class="orbit"></div>
-          <div class="orbit orbit-2"></div>
-          <div class="core"></div>
-          <p class="schematic-meta"><strong>Focus</strong> · how I like to work</p>
+          <div class="schematic" aria-hidden="true">
+            <div class="scanline"></div>
+            <div class="orbit"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="core"></div>
+            <p class="schematic-meta"><strong>Focus</strong> · how I like to work</p>
+          </div>
         </div>
       </div>
 
@@ -138,6 +135,11 @@
         <div class="scan-rail" aria-hidden="true"><div class="scan-fill"></div></div>
         <h2>Work experience</h2>
         <ul class="projects" data-passion-experience></ul>
+      </section>
+
+      <section class="skills-section" id="skills">
+        <h2>Skills</h2>
+        <ul class="skills-rails" data-passion-skills></ul>
       </section>
 
       <footer>Professional craft view · glow, progress, hover detail</footer>

@@ -26,10 +26,12 @@ function normalizeView(name) {
   return 'gate'
 }
 
-/** Map location.hash → view. Empty hash = gate (JS). #projects / #work stay on passion. */
+/** Map location.hash → view. Empty hash = gate (JS). In-page Passion anchors stay on passion. */
 function hashToView() {
   const raw = (location.hash || '').replace(/^#/, '').split('?')[0]
-  if (raw === 'projects' || raw === 'work') return 'passion'
+  if (raw === 'projects' || raw === 'work' || raw === 'experience' || raw === 'skills') {
+    return 'passion'
+  }
   if (!raw) return 'gate'
   return normalizeView(raw)
 }
@@ -52,10 +54,8 @@ function applyView(view) {
     else el.setAttribute('hidden', '')
   }
 
-  const passionAnchor =
-    location.hash === '#projects' || location.hash === '#work'
-      ? '#projects'
-      : null
+  const passionHashes = new Set(['#projects', '#work', '#experience', '#skills'])
+  const passionAnchor = passionHashes.has(location.hash) ? location.hash : null
   const next =
     view === 'gate' ? '' : view === 'passion' && passionAnchor ? passionAnchor : `#${view}`
   const url = `${location.pathname}${location.search}${next}`
@@ -192,6 +192,24 @@ function fillContent() {
 
   fillPassionList('[data-passion-projects]', c.projects, { slot: true })
   fillPassionList('[data-passion-experience]', c.workExperience)
+
+  const skills = c.skills ?? []
+  const skillsRails = document.querySelector('[data-passion-skills]')
+  if (skillsRails) {
+    skillsRails.innerHTML = skills
+      .map(
+        (s) => {
+          const keywords = (s.keywords ?? [])
+            .map((k) => `<span class="kw-word">${escapeHtml(k)}</span>`)
+            .join('<span class="kw-sep"> · </span>')
+          return `<li class="skill-rail">
+          <span class="rail-name">${escapeHtml(s.name)}</span>
+          <p class="rail-keywords">${keywords}</p>
+        </li>`
+        }
+      )
+      .join('')
+  }
 }
 
 document.addEventListener('click', (event) => {

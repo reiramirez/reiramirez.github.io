@@ -1,7 +1,9 @@
 /**
- * Passion interactions: scroll progress, ambient focus glow, refined hover.
- * No custom reticle — keep the system cursor.
+ * Passion interactions: scroll progress, ambient focus glow, refined hover,
+ * skills keyword proximity reveal. No custom reticle — keep the system cursor.
  */
+
+const KW_RADIUS = 110
 
 let active = false
 let schematic = null
@@ -28,6 +30,35 @@ function restartSchematicArt() {
   })
 }
 
+function wrapKeywordChars(skillsSection) {
+  skillsSection.querySelectorAll('.rail-keywords').forEach((p) => {
+    if (p.dataset.kwWrapped === '1') return
+    const words = p.querySelectorAll('.kw-word')
+    if (words.length) {
+      words.forEach((word) => {
+        const text = word.textContent ?? ''
+        word.textContent = ''
+        for (const ch of text) {
+          const span = document.createElement('span')
+          span.className = 'kw-char'
+          span.textContent = ch
+          word.appendChild(span)
+        }
+      })
+    } else {
+      const text = p.textContent ?? ''
+      p.textContent = ''
+      for (const ch of text) {
+        const span = document.createElement('span')
+        span.className = 'kw-char'
+        span.textContent = ch
+        p.appendChild(span)
+      }
+    }
+    p.dataset.kwWrapped = '1'
+  })
+}
+
 export function setPassionActive(isActive) {
   active = Boolean(isActive)
   if (!glow) return
@@ -35,6 +66,9 @@ export function setPassionActive(isActive) {
   if (!active) {
     glow.classList.remove('is-on')
     resetTilt()
+    document.querySelectorAll('.view-passion .kw-char').forEach((el) => {
+      el.style.setProperty('--t', '0')
+    })
     return
   }
 
@@ -43,6 +77,7 @@ export function setPassionActive(isActive) {
 
 export function initPassionInteractions() {
   reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
   const host = document.querySelector('.view-passion')
   if (!host) return
@@ -62,6 +97,72 @@ export function initPassionInteractions() {
   let gy = my
 
   schematic = host.querySelector('.schematic')
+
+  const skillsSection = host.querySelector('.skills-section')
+  let charData = []
+  let charsDirty = true
+  let keywordsNear = false
+  const proximityOn = Boolean(skillsSection) && finePointer && !reduced
+
+  if (proximityOn) {
+    wrapKeywordChars(skillsSection)
+    skillsSection.classList.add('is-proximity')
+
+    const markDirty = () => {
+      charsDirty = true
+    }
+    window.addEventListener('scroll', markDirty, { passive: true, capture: true })
+    window.addEventListener('resize', markDirty, { passive: true })
+
+    charData = [...skillsSection.querySelectorAll('.kw-char')].map((el) => ({
+      el,
+      x: 0,
+      y: 0,
+    }))
+  }
+
+  function refreshCharCenters() {
+    for (const c of charData) {
+      const r = c.el.getBoundingClientRect()
+      c.x = r.left + r.width * 0.5
+      c.y = r.top + r.height * 0.5
+    }
+    charsDirty = false
+  }
+
+  function dimAllKeywords() {
+    if (!keywordsNear) return
+    for (const c of charData) {
+      c.el.style.setProperty('--t', '0')
+    }
+    keywordsNear = false
+  }
+
+  function updateKeywordProximity() {
+    if (!proximityOn || !active) return
+
+    const sec = skillsSection.getBoundingClientRect()
+    const outside =
+      mx < sec.left - KW_RADIUS ||
+      mx > sec.right + KW_RADIUS ||
+      my < sec.top - KW_RADIUS ||
+      my > sec.bottom + KW_RADIUS
+
+    if (outside) {
+      dimAllKeywords()
+      return
+    }
+
+    if (charsDirty) refreshCharCenters()
+    keywordsNear = true
+
+    for (const c of charData) {
+      const d = Math.hypot(c.x - mx, c.y - my)
+      const t = Math.max(0, 1 - d / KW_RADIUS)
+      const eased = t * t * (3 - 2 * t)
+      c.el.style.setProperty('--t', eased.toFixed(3))
+    }
+  }
 
   window.addEventListener(
     'pointermove',
@@ -87,6 +188,7 @@ export function initPassionInteractions() {
   function resetGlowAndTilt() {
     glow.classList.remove('is-on')
     resetTilt()
+    dimAllKeywords()
   }
 
   document.addEventListener('pointerout', (e) => {
@@ -107,6 +209,7 @@ export function initPassionInteractions() {
         gy = my
       }
       glow.style.transform = `translate(${gx}px, ${gy}px) translate(-50%, -50%)`
+      updateKeywordProximity()
     }
     requestAnimationFrame(tickGlow)
   }

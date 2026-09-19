@@ -57,12 +57,19 @@ export function extractSiteContent(doc) {
     mapEntry(w, [w.position, w.name].filter(Boolean).join(' · '))
   )
 
+  const skills = (doc?.content?.skills ?? []).map((s) => ({
+    name: String(s.name ?? '').trim(),
+    level: String(s.level ?? '').trim(),
+    keywords: (s.keywords ?? []).map((k) => String(k).trim()).filter(Boolean),
+  }))
+
   return {
     name: basics.name ?? '',
     headline: basics.headline ?? '',
     bio,
     projects,
     workExperience,
+    skills,
     resumeUrl: 'resume.pdf',
   }
 }

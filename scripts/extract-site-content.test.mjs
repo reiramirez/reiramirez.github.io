@@ -36,6 +36,18 @@ describe('extractSiteContent', () => {
             summary: 'Shipped APIs.\nPartners moved faster.',
           },
         ],
+        skills: [
+          {
+            name: 'Languages',
+            level: 'Expert',
+            keywords: ['Python', 'Java'],
+          },
+          {
+            name: 'DevOps',
+            level: 'Advanced',
+            keywords: ['CI/CD'],
+          },
+        ],
       },
     }
     const out = extractSiteContent(input)
@@ -59,6 +71,10 @@ describe('extractSiteContent', () => {
         detail: 'Partners moved faster.',
       },
     ])
+    expect(out.skills).toEqual([
+      { name: 'Languages', level: 'Expert', keywords: ['Python', 'Java'] },
+      { name: 'DevOps', level: 'Advanced', keywords: ['CI/CD'] },
+    ])
     expect(out.resumeUrl).toBe('resume.pdf')
   })
 
@@ -72,7 +88,7 @@ describe('extractSiteContent', () => {
     expect(extractSiteContent(input).projects[0].url).toBe('')
   })
 
-  it('returns empty arrays when projects or work missing', () => {
+  it('returns empty arrays when projects, work, or skills missing', () => {
     const input = {
       content: {
         basics: { name: 'Rei Ramirez', summary: 'Builder.' },
@@ -81,5 +97,6 @@ describe('extractSiteContent', () => {
     const out = extractSiteContent(input)
     expect(out.projects).toEqual([])
     expect(out.workExperience).toEqual([])
+    expect(out.skills).toEqual([])
   })
 })
